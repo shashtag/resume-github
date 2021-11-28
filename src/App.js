@@ -8,16 +8,15 @@ import Resume from "./components/Resume";
 
 function App() {
   const [titleColor, setTitleColor] = useState("#547bcb");
-
   return (
     <Router>
-      <div className="App">
+      <div className='App'>
         <Navbar titleColor={titleColor} setTitleColor={setTitleColor} />
         <Switch>
-          <Route path="/:username">
+          <Route path='/:username'>
             <Resume titleColor={titleColor} />
           </Route>
-          <Route path="/">
+          <Route path='/'>
             <Home />
           </Route>
         </Switch>
