@@ -1,11 +1,13 @@
 import { Button, TextField, Typography } from "@material-ui/core";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useHistory } from "react-router-dom";
+import { UIContext } from "../../Context/UIContext";
 
 function Home() {
   const [username, setUsername] = useState("");
   const [usernameL, setUsernameL] = useState("");
   const [disable, setDisable] = useState(true);
+  const { state, dispatch } = useContext(UIContext);
 
   const history = useHistory();
 
@@ -55,8 +57,8 @@ function Home() {
           var reader = new FileReader();
 
           reader.onload = function (e) {
-            var content = reader.result;
-            console.log(JSON.parse(content));
+            var content = JSON.parse(reader.result);
+            dispatch({ type: "SET_DATA", payload: content });
             setDisable(false);
           };
 

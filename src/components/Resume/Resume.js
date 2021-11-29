@@ -11,6 +11,9 @@ import Repositories from "./Repositories";
 import Contributions from "./Contributions";
 import Footer from "./Footer";
 import { ConfigContext } from "./";
+import Certification from "./Certification";
+import Education from "./Education";
+import Skills from "./Skills";
 
 const Main = styled.div`
   color: #333;
@@ -60,6 +63,9 @@ function Resume({ titleColor }) {
         location={data.user.location}
         createdAt={data.user.createdAt}
       />
+      <Education titleColor={titleColor} />
+      <Skills titleColor={titleColor} />
+      <Certification titleColor={titleColor} />
       <Stats
         contributions={data.user.contributionsCollection}
         followers={data.user.followers.totalCount}
