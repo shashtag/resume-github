@@ -5,12 +5,12 @@ import { useHistory } from "react-router-dom";
 function Home() {
   const [username, setUsername] = useState("");
   const [usernameL, setUsernameL] = useState("");
+  const [disable, setDisable] = useState(true);
+
   const history = useHistory();
 
   const showResume = () =>
-    username.length &&
-    usernameL.length &&
-    history.push(`/${username}/${usernameL}`);
+    username.length && usernameL.length && history.push(`/${username}`);
   return (
     <>
       <Typography variant='h2' style={{ margin: "2rem 0" }}>
@@ -21,6 +21,7 @@ function Home() {
         and LinkedIn containing top repositories, contribution, statistics and
         more...
       </Typography>
+      <br />
       <TextField
         InputProps={{
           startAdornment: (
@@ -35,6 +36,7 @@ function Home() {
       />
       <br />
       <TextField
+        type='file'
         InputProps={{
           startAdornment: (
             <i
@@ -45,12 +47,30 @@ function Home() {
         style={{ width: "300px", margin: "0rem 0 2rem 0" }}
         label='Enter LinkedIn Username'
         // variant='outlined'
-        onChange={(e) => setUsernameL(e.target.value)}
+        onChange={(e) => {
+          setUsernameL(e.target.value);
+          console.log(e.target.files);
+          var file = e.target.files[0];
+
+          var reader = new FileReader();
+
+          reader.onload = function (e) {
+            var content = reader.result;
+            console.log(JSON.parse(content));
+            setDisable(false);
+          };
+
+          reader.readAsText(file);
+        }}
         value={usernameL}
       />
 
       <br />
-      <Button variant='contained' color='primary' onClick={() => showResume()}>
+      <Button
+        variant='contained'
+        disabled={disable}
+        color='primary'
+        onClick={() => showResume()}>
         Generate
       </Button>
     </>
