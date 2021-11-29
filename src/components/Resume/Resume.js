@@ -43,12 +43,14 @@ function Resume({ titleColor }) {
   if (error)
     return (
       <div>
-        <p>Unexpected Error: Invalid Username or API error {console.log(error)}</p>
-        <Link to="/">Go back</Link>
+        <p>
+          Unexpected Error: Invalid Username or API error {console.log(error)}
+        </p>
+        <Link to='/'>Go back</Link>
       </div>
     );
   return (
-    <Main id="resume">
+    <Main id='resume'>
       {/* {console.log(data)} */}
       <Introduction
         name={data.user.name}
@@ -75,13 +77,20 @@ function Resume({ titleColor }) {
         titleColor={titleColor}
       />
       <Repositories
-        repoList={repo ? data?.user?.pinnedItems?.nodes : data?.user?.repositories?.nodes}
+        repoList={
+          repo
+            ? data?.user?.pinnedItems?.nodes
+            : data?.user?.repositories?.nodes
+        }
         username={username}
         titleColor={titleColor}
       />
       {data.user.contributionsCollection.totalPullRequestContributions && (
         <Contributions
-          repoList={data.user.contributionsCollection.pullRequestContributionsByRepository}
+          repoList={
+            data.user.contributionsCollection
+              .pullRequestContributionsByRepository
+          }
           titleColor={titleColor}
         />
       )}

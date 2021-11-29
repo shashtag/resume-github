@@ -1,45 +1,59 @@
+import { Button, TextField, Typography } from "@material-ui/core";
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 
-import svg from "../../assets/github.png";
-import { HomeDesign, InputBox } from "./Home.style";
-
 function Home() {
   const [username, setUsername] = useState("");
+  const [usernameL, setUsernameL] = useState("");
   const history = useHistory();
 
-  const showResume = () => username.length && history.push(`/${username}`);
+  const showResume = () =>
+    username.length &&
+    usernameL.length &&
+    history.push(`/${username}/${usernameL}`);
   return (
-    <HomeDesign>
-      <div className="form">
-        <h2>Get your Github resume now!</h2>
-        <p>
-          Get your resume built with public information provided by Github containing top
-          repositories, contribution, statistics and more...
-        </p>
-        <div>
-          <label htmlFor="username">Enter Github Username</label>
-          <br />
-          <InputBox>
-            <i className="fab fa-github"></i>
-            <input
-              type="text"
-              id="username"
-              autoComplete="off"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              onKeyPress={(e) => {
-                let code = e.which || e.keyCode;
-                if (code === 13) showResume();
-              }}
-              placeholder="John_278"
-            />
-          </InputBox>
-          <button onClick={() => showResume()}>Generate</button>
-        </div>
-      </div>
-      <img src={svg} alt="graphics" />
-    </HomeDesign>
+    <>
+      <Typography variant='h2' style={{ margin: "2rem 0" }}>
+        Get your resume now!
+      </Typography>
+      <Typography variant='p' style={{ margin: "2rem 0" }}>
+        Get your resume built with your public information provided by Github
+        and LinkedIn containing top repositories, contribution, statistics and
+        more...
+      </Typography>
+      <TextField
+        InputProps={{
+          startAdornment: (
+            <i className='fab fa-github' style={{ marginRight: "0.25rem" }}></i>
+          ),
+        }}
+        style={{ width: "300px", margin: "2rem 0" }}
+        label='Enter Github Username'
+        // variant='outlined'
+        onChange={(e) => setUsername(e.target.value)}
+        value={username}
+      />
+      <br />
+      <TextField
+        InputProps={{
+          startAdornment: (
+            <i
+              className='fab fa-linkedin'
+              style={{ marginRight: "0.25rem" }}></i>
+          ),
+        }}
+        style={{ width: "300px", margin: "0rem 0 2rem 0" }}
+        label='Enter LinkedIn Username'
+        // variant='outlined'
+        onChange={(e) => setUsernameL(e.target.value)}
+        value={usernameL}
+      />
+
+      <br />
+      <Button variant='contained' color='primary' onClick={() => showResume()}>
+        Generate
+      </Button>
+    </>
   );
 }
 

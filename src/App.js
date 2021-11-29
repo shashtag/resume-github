@@ -13,7 +13,7 @@ function App() {
       <div className='App'>
         <Navbar titleColor={titleColor} setTitleColor={setTitleColor} />
         <Switch>
-          <Route path='/:username'>
+          <Route path='/:username/:usernameL'>
             <Resume titleColor={titleColor} />
           </Route>
           <Route path='/'>
