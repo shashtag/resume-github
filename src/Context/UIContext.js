@@ -4,6 +4,8 @@ export const UIContext = createContext();
 
 export const UIProvider = ({ children }) => {
   const initialState = {
+    pills: false,
+    outlined: false,
     data: {
       profile: {
         first_name: "Shashwat",
@@ -166,6 +168,7 @@ export const UIProvider = ({ children }) => {
       ],
     },
     educationCount: 2,
+    CCount: 5,
   };
 
   const reducer = (state, action) => {
@@ -174,6 +177,12 @@ export const UIProvider = ({ children }) => {
         return { ...state, data: action.payload };
       case "SET_EDC":
         return { ...state, educationCount: action.payload };
+      case "SET_CC":
+        return { ...state, CCount: action.payload };
+      case "SET_PILLS":
+        return { ...state, pills: action.payload };
+      case "SET_OUTLINED":
+        return { ...state, outlined: action.payload };
       default:
         return state;
     }

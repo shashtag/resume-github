@@ -7,7 +7,7 @@ function Home() {
   const [username, setUsername] = useState("");
   const [usernameL, setUsernameL] = useState("");
   const [disable, setDisable] = useState(true);
-  const { state, dispatch } = useContext(UIContext);
+  const { dispatch } = useContext(UIContext);
 
   const history = useHistory();
 

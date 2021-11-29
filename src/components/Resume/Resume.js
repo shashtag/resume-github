@@ -65,7 +65,7 @@ function Resume({ titleColor }) {
       />
       <Education titleColor={titleColor} />
       <Skills titleColor={titleColor} />
-      <Certification titleColor={titleColor} />
+
       <Stats
         contributions={data.user.contributionsCollection}
         followers={data.user.followers.totalCount}
@@ -100,6 +100,7 @@ function Resume({ titleColor }) {
           titleColor={titleColor}
         />
       )}
+      <Certification titleColor={titleColor} />
       <Footer
         username={username}
         githubUrl={data.user.url}
